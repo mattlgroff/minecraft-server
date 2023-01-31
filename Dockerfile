@@ -5,14 +5,13 @@ FROM debian:bullseye-slim
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive \
     apt-get install --assume-yes --no-install-recommends \
-      openjdk-17-jre-headless \
-      wget
+      openjdk-17-jre-headless
 
 # Create minecraft working directory
 WORKDIR /minecraft
 
 # Download minecraft server .jar
-RUN wget https://piston-data.mojang.com/v1/objects/c9df48efed58511cdd0213c56b9013a7b5c9ac1f/server.jar
+ADD https://piston-data.mojang.com/v1/objects/c9df48efed58511cdd0213c56b9013a7b5c9ac1f/server.jar server.jar
 
 # Copy Minecraft EULA
 COPY eula.txt eula.txt
